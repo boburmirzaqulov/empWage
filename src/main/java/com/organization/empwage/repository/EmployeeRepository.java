@@ -79,7 +79,7 @@ public class EmployeeRepository {
         employee.setId(++index);
         Employee employee1 = empMap.put(employee.getId(), employee);
         if (employee1 == null) {
-            File file = new File("C:\\spring-data\\empWage\\src\\main\\resources\\static\\data.csv");
+            File file = new File(FileSystems.getDefault().getPath("").toAbsolutePath().toFile().getAbsolutePath()+ "/src/main/resources/static/data.csv");
             try {
                 createCSVFile(file);
                 return employee;
@@ -98,7 +98,7 @@ public class EmployeeRepository {
         if (!isHave(employee.getId()))
             throw new ValidationException(String.format("ID = %d %s", employee.getId(), AppMessages.NOT_FOUND));
         Employee employee1 = empMap.put(employee.getId(), employee);
-        File file = new File("C:\\spring-data\\empWage\\src\\main\\resources\\static\\data.csv");
+        File file = new File(FileSystems.getDefault().getPath("").toAbsolutePath().toFile().getAbsolutePath()+ "/src/main/resources/static/data.csv");
         try {
             createCSVFile(file);
             return employee;
@@ -112,7 +112,7 @@ public class EmployeeRepository {
     public Employee deleteById(Long id) {
         if (!isHave(id)) throw new ValidationException(String.format("ID = %d %s", id, AppMessages.NOT_FOUND));
         Employee employee = empMap.remove(id);
-        File file = new File("C:\\spring-data\\empWage\\src\\main\\resources\\static\\data.csv");
+        File file = new File(FileSystems.getDefault().getPath("").toAbsolutePath().toFile().getAbsolutePath()+ "/src/main/resources/static/data.csv");
         try {
             createCSVFile(file);
             return employee;
